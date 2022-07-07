@@ -1,0 +1,68 @@
+
+/* 
+    Created on : 27 juin 2022, 23:31:37
+    Author     : sylvi
+*/
+body{ 
+    margin:0; 
+}
+/* margin-left: 30%;
+margin-right: 30%;*/
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+
+    min-width: 40%;
+    height: 10%;
+    width: 70%;
+}
+
+.menu {
+    display: flex;                /* Transformation en flexbox */
+    /* Suppression des marges internes */
+    /* Ajout de la couleur d'arrière-plan */
+    justify-content: space-around;
+    background-color: #65ced9;    /* Ajout de la couleur d'arrière-plan BONNE #73cfd9;  #77e1ec;*/
+    width: 40;   
+}
+.menu li {
+    list-style-type: none ;       /* Suppression des puces */
+
+}
+.menu a {
+    display: block;        
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 20px;
+    width: 230px;
+    min-width : 120px;
+    height: inherit;
+    text-align: center;           /* Centrage du texte     margin: 0.5rem;               /* Marges externes */
+    
+    background-color: #fff69a;   /* padding: 0.4rem 0;       Arrière-plan */
+    color: black;                  /* Couleur du texte */
+    text-decoration: none;        /* Suppression du soulignement */
+    border: 1px solid #fff;       /* Ajout d'une bordure */
+    border-radius: 4px;           /* Arrondis des bordures */
+
+
+}
+
+nav li{
+    display: inline;
+}
+.menu a.actif {    
+    background-color: #000; 
+    color: #1ABC9C ;
+    border-color: #1ABC9C ;
+}
+.menu a:hover,
+.menu a:hover.actif{
+    background-color: white;
+    color: #ffe843;
+    border-color: #ffe843;
+}
+
+
+
