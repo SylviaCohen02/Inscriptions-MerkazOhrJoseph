@@ -5,6 +5,15 @@
  *
  * @author sylvi
  */
-class fonctionsTest {
-    //put your code here
-}
+use PHPUnit\Framework\TestCase;
+    require_once '../includes/pdoMoj.php';
+    $bdd = pdoMoj::getBddMoj();
+    
+class fonctionsTest extends TestCase {
+   
+    public function testGetInfosEnfant()
+    {
+    }
+    
+    
+    }

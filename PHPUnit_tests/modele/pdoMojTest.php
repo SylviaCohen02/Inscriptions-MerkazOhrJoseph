@@ -35,7 +35,7 @@ class pdoMojTest extends TestCase {
     }
 
     public function getInfosUtilisateur($email, $mdp) {
-        if ($email == "dupontd@gmail.com" && $mdp == "erH23sj!!") {
+        if ($email == "dupontd@homail.fr" && $mdp == "erH23sj!!") {
             return 1;
         }
     }
