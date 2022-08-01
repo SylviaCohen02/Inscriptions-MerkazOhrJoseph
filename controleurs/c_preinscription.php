@@ -1,15 +1,25 @@
 <?php
-
+ $idUtilisateur = $_SESSION['idUtilisateur'];
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
-$idUtilisateur = $_SESSION['idUtilisateur'];
+session_start();
+//var_dump($idUtilisateur);
+
+
 switch ($action) {
 case 'afficheEnfants':
-    $enfants=getEnfants($idUtilisateur);
-    include 'vues/v_afficheEnfants.php';
+      //error_reporting(E_ALL); 
+    echo'rr';
+    echo 'bien0';
+    $enfants= $pdo->getEnfants($idUtilisateur);
+    var_dump($enfants);
+    //include 'vues/v_preinscrireEnfants.php';
     break;
-case 'voirEtatFrais':
-     $lesCles = array_keys($lesMois);
+case 'inserePreinscrits':
+    $enfants=$_POST['enfant'];
     break;
+default:
+        include 'vues/v_accueil.php';
+        break;
 
 }
     ?>

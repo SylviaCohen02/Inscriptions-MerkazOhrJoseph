@@ -1,13 +1,17 @@
+<?php
+
+//include'vues/v_navigation.php';
+   
+?>
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.98.0">
-    <title>Jumbotron example · Bootstrap v5.2</title>   
-    <link href="../styles/bootstrap.min.css" rel="stylesheet">
+ 
+    <title>Accueil</title>   
+    <link href="../styles/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -80,38 +84,39 @@
       </div>  
     
         <div class="col-md-2">
+             
         <div class="h-50 bg-info rounded-3">
-          <br><p class="text-center"><a href="v_piedDePage.php">Saisir dossier de préinscription </a></p>
+          <br><p class="text-center"><a href="index.php?uc=preinscription&action=afficheEnfants" class="nav-link text-white">Saisir dossier de préinscription </a></p>
          </div>
       </div>
 
 	  <div class="col-md-2">
         <div class="h-50 bg-info rounded-3">
-           <br><p class="text-center"><a href="v_piedDePage.php">Paiement</a><p>
+           <br><p class="text-center"><a href="v_piedDePage.php" class="nav-link text-white">Paiement</a><p>
          </div>
       </div>
 	  
       <div class="col-md-2">
         <div class="h-50 bg-info rounded-3">
-            <br><p class="text-center"><a href="v_piedDePage.php">Voir statut de préinscription</a></p>
+            <br><p class="text-center text-white "><a href="v_piedDePage.php" class="nav-link text-white">Voir statut de préinscription</a></p>
          </div>
       </div>
       <div class="col-md-2">
         <div class="h-50 bg-info rounded-3">
-            <br><p class="text-center"><a href="v_piedDePage.php"> Voir statut demande de réduction tarifaire</a></p>
+            <br><p class="text-center"><a href="v_piedDePage.php" class="nav-link text-white"> Voir statut demande de réduction tarifaire</a></p>
         
          </div>
       </div>
       <div class="col-md-2">
         <div class="h-50 bg-info rounded-3">
-         <br><p class="text-center"><a href="v_piedDePage.php">Annuler une préinscription</a></p>
+         <br><p class="text-center"><a href="v_piedDePage.php" class="nav-link text-white">Annuler une préinscription</a></p>
        
          </div>
       </div>
     </div>
-  </div>
- 
-
+  </div><br><br><br><br><br><br><br><br>
+ <?php
+ include 'vues/v_piedDePage.php';?>
   </body>
 </html>
 

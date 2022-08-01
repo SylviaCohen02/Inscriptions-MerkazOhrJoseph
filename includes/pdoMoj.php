@@ -3,22 +3,21 @@
  * Description of pdoDb
  * @author sylvia
  */
+
+include'connexionBdd.php';
 class pdoMoj {
 
-    private static $servername = "localhost";
-    private static $username = "euroforma";
-    private static $password = "S3jHanouka";
-    private static $dbname = "dbname=incriptionsmoj";
+   
     private static $monPdo;
     private static $bddMoj = null;
 
     private function __construct() {
-        pdoMoj::$monPdo = new PDO("mysql:host=" . pdoMoj::$servername . ";"
-                . "dbname=inscriptionsmoj;charset:utf8",
-                pdoMoj::$username,
-                pdoMoj::$password);
+        pdoMoj::$monPdo = new PDO("mysql:host=".SERVERNAME.";"
+                . "dbname=".DBNAME.";charset:utf8", USERNAME, PASSWORD);
     }
 
+    
+    
     public static function getBddMoj() {
         if (pdoMoj::$bddMoj == null) {
             pdoMoj::$bddMoj = new pdoMoj();
@@ -40,7 +39,7 @@ class pdoMoj {
         $req->bindValue(':email', $email);
         $req->bindValue(':motDePasse', $mdp);
         $req->execute(); 
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        return $req->fetchAll();
     }
     
      public function getInfosAdmin($email, $mdp)
@@ -56,7 +55,7 @@ class pdoMoj {
     
     public function getPreinscriptions($annee){
          $req = pdoMoj::$monPdo->prepare(
-           'SELECT * FROM preinscription WHERE SUBSTR(datePreinscription,0,3)= '
+           'SELECT * FROM preinscription WHERE YEAR(datePreinscription)= '
                 . ':annee');
         $req->bindValue(':annee',$annee);    
          $req->execute();
@@ -95,18 +94,28 @@ class pdoMoj {
         return $req->fetchAll();
     }
     
-    public function anonymisePreinscription($idPreinscris, $annee){
+    public function anonymisePreinscription($idPreinscription, $idEnfant){
         $req = pdoMoj::$monPdo->prepare(//partout des zeros, a part l'id exemple 
-        //stat
-            'UPDATE  preinscription SET  WHERE annee= :annee AND 
-                idPreinscris= :idPreinscris');
-        $req->bindValue(':annee',$annee); 
-        $req->bindValue(':idPreinscris',$idPreinscris); 
-         $req->execute();
+           
+        'UPDATE  preinscription SET idClasse=0, datePreinscription=null, statutDossier=null, reponse=null, idEnfant=0,
+             WHERE idEnfant= :idEnfant 
+                id= :idPreinscription');
+          $req->bindValue(':idPreinscription',$idPreinscris);    
+        $req->execute();
         return $req->fetchAll();
     }
     
+     public function anonymiseEnfant($idEnfant){
+        $req = pdoMoj::$monPdo->prepare(//partout des zeros, a part l'id exemple 
+         'UPDATE  enfant SET nom=null, prenom=null, age=0,
+                etablissementActuel=null, classe=null WHERE annee= :annee AND 
+                id= :idPreinscription');    
+     $req->bindValue(':idEnfant',$idEnfant);      
+        $req->execute();
+        return $req->fetchAll();
     
+     }
+     
     public function affirmeReceptionPaiement($idUser){
         
     }
@@ -127,7 +136,7 @@ class pdoMoj {
          $req = pdoMoj::$monPdo->prepare(
           'SELECT COUNT(*) FROM preinscription JOIN classe ON '
                  . 'preinscription.idClasse= classe.id'
-                 . ' WHERE annee= :annee AND classe= :classe');
+                 . ' WHERE YEAR(datePreinscription)= :annee AND classe= :classe');
        $req->bindValue(':annee',$annee);   
        $req->bindValue(':classe',$classe); 
         $req->execute();
@@ -192,7 +201,7 @@ class pdoMoj {
     public function creePreinscription($idEnfant, $idUser, $inscription) {
         $req = pdoMoj::$monPdo->prepare(
             'INSERT INTO preinscription'
-            . 'VALUES :id, :nom, :prenom, :age, :etabActuel'  
+            . 'VALUES :idEnfant, :idUser, CURDATE()'  
         );
          $req->execute();
         return $req->fetchAll();
@@ -214,7 +223,7 @@ class pdoMoj {
         return $req->fetchAll();
     }
     
-    public function getNbEnfantsScolarisesMoj($idUser){
+    public function getNbEnfantsPreinscrisMoj($idUser){
          $req = pdoMoj::$monPdo->prepare(
             'SELECT COUNT(*) FROM preinscription JOIN enfant ON 
                 preinscription.idEnfant=enfant.id WHERE 
@@ -225,5 +234,17 @@ class pdoMoj {
         $req->execute();
         return $req->fetchAll();
     }
-       
+         public function anonymiseInfos($idEnfant){
+        
+        $req = pdoMoj::$monPdo->prepare(
+                 'UPDATE enfant SET ');
+            $req = pdoMoj::$monPdo->prepare(
+       'UPDATE utilisateur SET ');
+                        
+                  
+        $req->bindValue(':annee',$annee); 
+        $req->bindValue(':idPreinscris',$idPreinscris); 
+        $req->execute();
+        return $req->fetchAll();
+    }
 }

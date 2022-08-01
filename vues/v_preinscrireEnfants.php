@@ -2,6 +2,57 @@
 <?php
 //afficher session user ds une balise HTML
 ?>
+
+       <div class="row">
+            <div class="col-md-8">
+             
+                    
+                     <div class="col-md-6">
+                <br> <h4 class="text-small">Enfants  </h4>
+                                     <table class="table border-info">
+                    <thead>
+                        
+                        <tr class="table-warning">
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th style="width:20px">Le preinscrire?</th>
+                           
+                        </tr>
+                    </thead>  
+                    <tbody>
+ 
+<?php 
+foreach ($enfants as $enfant)
+{
+?>
+                        <tr>
+                            <td><input class="floatingInput" type="text" name="nom[]" value="<?php echo $enfant['nom'] ?>"   ></td>
+                            <td> <input type="text" name="prenom[]""  id="firstName" value="<?php echo $enfant['prenom'] ?>"  ></td>
+                            <td><label>Oui</label><input type="checkbox" name="choix[]" id="choix"  ></td>
+                           
+                        </tr>
+                        
+                   
+ <?php
+ }
+ ?>
+                    </tbody>  
+                </table>
+                      <div class="col-md-6">
+                    <br><button class="btn btn-info" type="submit" name="valider2">Valider</button>
+
+                </div>
+           
+            </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
 <html>
     <head>
         <meta charset="UTF-8">
